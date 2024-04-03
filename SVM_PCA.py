@@ -115,12 +115,9 @@ X = data_normalized.iloc[:, 0:-1].values
 y = data_normalized.iloc[:, -1].values
 y = np.where(y > 0, 1, 0)
 
-# Pembagian training dan testing untuk PCA
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
 # Menghitung komponen utama (principal components)
 pca = PCA()
-pca.fit(X_train)
+pca.fit(X)
 
 # Menampilkan variance explained ratio dari setiap komponen
 print("Variance Explained Ratio:")
@@ -130,12 +127,11 @@ print()
 # Memilih jumlah komponen yang akan digunakan (misalnya, 8 komponen)
 n_components = 8
 pca = PCA(n_components=n_components)
-X_train_pca = pca.fit_transform(X_train)
-X_test_pca = pca.transform(X_test)
+X_train_pca = pca.fit_transform(X)
 
 # Plot hasil PCA
 plt.figure(figsize=(8, 6))
-plt.scatter(X_train_pca[:, 0], X_train_pca[:, 1], c=y_train, cmap="viridis")
+plt.scatter(X_train_pca[:, 0], X_train_pca[:, 1], c=y, cmap="viridis")
 plt.xlabel("Principal Component 1")
 plt.ylabel("Principal Component 2")
 plt.title("PCA of Dataset")
@@ -178,11 +174,11 @@ print()
 
 # Pemodelan SVM
 svm_model = SVC(random_state=0)
-svm_model.fit(X_train_pca, y_train)
+svm_model.fit(X_train, y_train)
 
 # Prediksi SVM
 print("Instance prediksi SVM: ")
-Y_pred = svm_model.predict(X_test_pca)
+Y_pred = svm_model.predict(X_test)
 print(Y_pred)
 print("=============================================================================")
 print()
