@@ -171,7 +171,7 @@ knn_classifier = KNeighborsClassifier(
 knn_classifier.fit(X_train, y_train)
 
 
-# Prediksi SVM
+# Prediksi KNN
 print("Instance prediksi KNN: ")
 Y_pred = knn_classifier.predict(X_test)
 print(Y_pred)
