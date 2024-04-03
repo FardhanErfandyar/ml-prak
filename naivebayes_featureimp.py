@@ -120,6 +120,13 @@ feature_importance = rf_model.feature_importances_
 print("Tingkat pentingnya fitur:")
 print(feature_importance)
 
+# Plot Feature Importance
+plt.bar(range(X.shape[1]), feature_importance)
+plt.xticks(range(X.shape[1]), X.columns, rotation=90)
+plt.xlabel("Fitur")
+plt.ylabel("Importance")
+plt.show()
+
 # Mengambil indeks fitur terpenting (misalnya, 8 fitur teratas)
 selected_indices = np.argsort(feature_importance)[::-1][:8]
 selected_features = X.columns[selected_indices]
