@@ -127,20 +127,20 @@ print("Variance Explained Ratio:")
 print(pca.explained_variance_ratio_)
 print()
 
-# Melakukan plot dari cumulative sum dari variance explained ratio
-plt.figure(figsize=(10, 5))
-plt.plot(np.cumsum(pca.explained_variance_ratio_))
-plt.xlabel("Number of Components")
-plt.ylabel("Cumulative Explained Variance")
-plt.title("Cumulative Explained Variance vs Number of Components")
-plt.grid(True)
-plt.show()
-
 # Memilih jumlah komponen yang akan digunakan (misalnya, 8 komponen)
 n_components = 8
 pca = PCA(n_components=n_components)
 X_train_pca = pca.fit_transform(X_train)
 X_test_pca = pca.transform(X_test)
+
+# Plot hasil PCA
+plt.figure(figsize=(8, 6))
+plt.scatter(X_train_pca[:, 0], X_train_pca[:, 1], c=y_train, cmap="viridis")
+plt.xlabel("Principal Component 1")
+plt.ylabel("Principal Component 2")
+plt.title("PCA of Dataset")
+plt.colorbar(label="Class")
+plt.show()
 
 # Menampilkan hasil seleksi fitur menggunakan PCA
 print("Hasil Seleksi Fitur menggunakan PCA:")
