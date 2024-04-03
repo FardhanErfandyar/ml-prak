@@ -152,7 +152,7 @@ print("=" * 75)
 # 5 Klasifikasi
 # grouping yang dibagi menjadi dua
 print("Grouping Variable".center(75, "="))
-X = data_normalized.iloc[:, 0:-1].values
+X = X_train_pca
 y = data_normalized.iloc[:, -1].values
 y = np.where(y > 0, 1, 0)
 print("Data Variable".center(75, "="))
